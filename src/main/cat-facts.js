@@ -30,7 +30,8 @@ button.addEventListener("click", getFact);
  * innerText of 'content' to the 'fact' property of the responseObject
  */
 async function getFact(){
-
+   try 
+   {
     //await for the promise containing the HTTP response to resolve
     let HTTPResponse = await fetch("https://catfact.ninja/fact");
 
@@ -39,8 +40,17 @@ async function getFact(){
 
     //logging the http response to the console
     console.log(responseObject);
+    content.innerText = responseObject.fact;
+
 }
 
+catch(error)
+
+{
+    console.error("Error fetching the cat fact: ", error);
+    content.innerText = "Failed to load cat fact.";
+}
+}
 
 /* OPTIONAL PRACTICE: If you want more practice later, try retrieving data from a different api.
         You can check here for more apis, choose one: https://rapidapi.com/collection/cool-apis
